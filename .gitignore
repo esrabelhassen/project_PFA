@@ -1,0 +1,22 @@
+# Exclude environment files
+.env
+env.py
+backend/alembic/env.py
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
