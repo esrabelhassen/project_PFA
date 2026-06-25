@@ -1,13 +1,36 @@
-## Sprint 1 — Backend (Steps 1–7)
+## Sprint 1 — Frontend (Steps 8–11)
 
 ### What was built
-- Configured environment variables (`.env`) for database and OpenAI credentials
-- Connected FastAPI to PostgreSQL via SQLAlchemy (`database.py`)
-- Defined the `Product` database model (`models/product.py`)
-- Defined Pydantic schemas for data validation (`schemas/product.py`)
-- Implemented full CRUD API for products (`routers/products.py`)
-- Registered router and configured CORS (`main.py`)
-- Created and applied first Alembic migration — `products` table now exists in DB
+- Defined axios API functions to call the backend (`src/api/products.js`)
+- Built product list page with MUI DataGrid (`src/pages/ProductsPage.jsx`)
+- Built add/edit product dialog form (`src/components/ProductForm.jsx`)
+- Wrapped app with React Query provider (`src/App.jsx`)
 
-### Testing
-All endpoints are testable via Swagger UI at:
+---
+
+### Libraries Added
+
+| Library | Purpose |
+|--------|---------|
+| `@mui/material` | UI component library |
+| `@mui/x-data-grid` | Data table component |
+| `@emotion/react` | Required by MUI |
+| `@emotion/styled` | Required by MUI |
+| `@tanstack/react-query` | API calls and caching |
+| `axios` | HTTP client |
+
+---
+
+### Installation Commands
+
+#### 1. Create Vite React project
+
+#### 2. Install dependencies
+
+#### 3. Start dev server
+
+---
+
+### Frontend runs at "http://localhost:5173/"
+
+### Backend runs at "http://localhost:8000/"
