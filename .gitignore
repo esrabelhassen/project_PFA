@@ -1,5 +1,6 @@
 # Exclude environment files
 .env
+!.env.example
 env.py
 backend/alembic/env.py
 
