@@ -1,15 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProducts, deleteProduct } from "../api/products";
 import { DataGrid } from "@mui/x-data-grid";
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box, Typography, Grid, Paper } from "@mui/material";
 import { useState } from "react";
 import ProductForm from "../components/ProductForm";
+import BomTree from "../components/BomTree";
+import RoutingList from "../components/RoutingList";
 
 export default function ProductsPage() {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({ queryKey: ["products"], queryFn: getProducts });
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
+  const [activeProductId, setActiveProductId] = useState(null);
 
   const deleteMutation = useMutation({
     mutationFn: deleteProduct,
@@ -27,8 +30,12 @@ export default function ProductsPage() {
       flex: 1,
       renderCell: (params) => (
         <>
-          <Button size="small" onClick={() => { setSelected(params.row); setOpen(true); }}>Modifier</Button>
-          <Button size="small" color="error" onClick={() => deleteMutation.mutate(params.row.id)}>Supprimer</Button>
+          <Button size="small" onClick={() => { setSelected(params.row); setOpen(true); }}>
+            Modifier
+          </Button>
+          <Button size="small" color="error" onClick={() => deleteMutation.mutate(params.row.id)}>
+            Supprimer
+          </Button>
         </>
       ),
     },
@@ -37,16 +44,39 @@ export default function ProductsPage() {
   return (
     <Box p={3}>
       <Typography variant="h5" mb={2}>Produits</Typography>
-      <Button variant="contained" onClick={() => { setSelected(null); setOpen(true); }} sx={{ mb: 2 }}>
+      <Button
+        variant="contained"
+        onClick={() => { setSelected(null); setOpen(true); }}
+        sx={{ mb: 2 }}
+      >
         + Nouveau produit
       </Button>
+
       <DataGrid
         rows={data?.data ?? []}
         columns={columns}
         loading={isLoading}
         autoHeight
         getRowId={(row) => row.id}
+        onRowClick={(params) => setActiveProductId(params.row.id)}
+        sx={{ mb: 3, cursor: "pointer" }}
       />
+
+      {activeProductId && (
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <BomTree productId={activeProductId} />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper sx={{ p: 2 }}>
+              <RoutingList productId={activeProductId} />
+            </Paper>
+          </Grid>
+        </Grid>
+      )}
+
       <ProductForm open={open} onClose={() => setOpen(false)} product={selected} />
     </Box>
   );
