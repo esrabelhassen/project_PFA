@@ -6,6 +6,8 @@ import { useState } from "react";
 import ProductForm from "../components/ProductForm";
 import BomTree from "../components/BomTree";
 import RoutingList from "../components/RoutingList";
+import DocumentList from "../components/DocumentList";
+
 
 export default function ProductsPage() {
   const queryClient = useQueryClient();
@@ -64,14 +66,19 @@ export default function ProductsPage() {
 
       {activeProductId && (
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <Paper sx={{ p: 2 }}>
               <BomTree productId={activeProductId} />
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <Paper sx={{ p: 2 }}>
               <RoutingList productId={activeProductId} />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ p: 2 }}>
+              <DocumentList productId={activeProductId} />
             </Paper>
           </Grid>
         </Grid>
