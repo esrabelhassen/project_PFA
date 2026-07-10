@@ -1,0 +1,6 @@
+@echo off
+echo Installing dependencies...
+pip install fastapi uvicorn sqlalchemy alembic psycopg2-binary pydantic python-dotenv --no-build-isolation
+
+echo Starting server...
+uvicorn app.main:app --reload

@@ -1,5 +1,10 @@
 ## Sprint 3 — Documentation & Bons de commande
 
+## IMPORTANT
+- added `start_frontend.bat` in \frontend and `start_backend.bat` in \backend.
+- both `check for missing required libraries` and `install then` then start backend server and frontend each 
+- execute `start_backend.bat` then `start_frontend.bat` and keep both cmd windows running.
+
 ### What was built
 - Defined `Document` and `PurchaseOrder` SQLAlchemy models
 - Generated and applied Alembic migration for `documents` and `purchase_orders` tables
