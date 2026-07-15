@@ -4,6 +4,8 @@ import { Box } from "@mui/material"
 import Sidebar from "./components/Sidebar"
 import ProductsPage from "./pages/ProductsPage"
 import PurchaseOrdersPage from "./pages/PurchaseOrdersPage"
+import NomenclaturePage from "./pages/NomenclaturePage"
+import GammesPage from "./pages/GammesPage"
 
 const queryClient = new QueryClient()
 
@@ -13,6 +15,8 @@ export default function App() {
   const renderPage = () => {
     switch (activePage) {
       case "produits": return <ProductsPage />
+      case "nomenclature": return <NomenclaturePage />
+      case "gammes": return <GammesPage />
       case "bons-de-commande": return <PurchaseOrdersPage />
       default: return <ProductsPage />
     }
